@@ -1,9 +1,9 @@
-from .util import authentication, leaderboard
+from util import authentication, leaderboard
 import json
-from .util.github import Upload
+from util.mygithub import Upload
 import time
 from datetime import datetime
-from .settings import rankLimit
+from settings import rankLimit
 
 summer2020Path = "data/summer2020.json"
 summer2020GroupId = "3987d489-03ae-4645-9903-8f7679c3a418"
