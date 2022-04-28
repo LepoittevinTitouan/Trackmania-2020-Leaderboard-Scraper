@@ -1,11 +1,14 @@
+import time
+
 import settings
 import requests
 from requests.auth import HTTPBasicAuth
 
 
-def GetAuthentication():
+def GetAuthentication(player):
     url = "https://public-ubiservices.ubi.com/v3/profiles/sessions"
     headers = {
+        'Authorization': player['authorization'],
         'Host': 'public-ubiservices.ubi.com',
         'Connection': 'keep-alive',
         'Content-Type': 'application/json',
@@ -13,11 +16,11 @@ def GetAuthentication():
         'Ubi-AppId': '86263886-327a-4328-ac69-527f0d20a237',
         'user-agent': 'zrtLeaderboardScrapper'
     }
-    result = requests.post(url, headers=headers, auth=HTTPBasicAuth(settings.login, settings.password))
+    result = requests.post(url, headers=headers)
 
     result = result.json()
 
-    settings.pseudo = result['nameOnPlatform']
+    player['pseudo'] = result['nameOnPlatform']
 
     token = result['ticket']
 
@@ -36,23 +39,32 @@ def GetAuthentication():
 
     result = result.json()
 
-    settings.accessToken = result["accessToken"]
-    settings.refreshToken = result["refreshToken"]
+    player['accessToken'] = result["accessToken"]
+    player['refreshToken'] = result["refreshToken"]
 
 
-def GetTokenRefresh():
+def GetTokenRefresh(player):
     url = "https://prod.trackmania.core.nadeo.online/v2/authentication/token/refresh"
     body = {
         'audience': 'NadeoLiveServices'
     }
-    headers = {
-        'Host': 'prod.trackmania.core.nadeo.online',
-        'Authorization': 'nadeo_v1 t=' + settings.refreshToken,
-        'content-type': 'application/json',
-        'user-agent': 'zrtLeaderboardScrapper'
-    }
-    result = requests.post(url, headers=headers, json=body)
-    result = result.json()
+    with settings.lockTocken:
+        headers = {
+            'Host': 'prod.trackmania.core.nadeo.online',
+            'Authorization': 'nadeo_v1 t=' + player['refreshToken'],
+            'content-type': 'application/json',
+            'user-agent': 'zrtLeaderboardScrapper'
+        }
+        result = requests.post(url, headers=headers, json=body)
+        result = result.json()
 
-    settings.accessToken = result["accessToken"]
-    settings.refreshToken = result["refreshToken"]
+        player['accessToken'] = result["accessToken"]
+        player['refreshToken'] = result["refreshToken"]
+
+
+def RefreshRoutine():
+    while True:
+        time.sleep(300)
+        for player in settings.players:
+            GetTokenRefresh(player)
+            print("Token refreshed")

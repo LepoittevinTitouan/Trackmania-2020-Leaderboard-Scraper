@@ -1,0 +1,84 @@
+{
+    "players": [
+        {
+            "pseudo": "ReflexSNC",
+            "rankings": [
+                {
+                    "id": 0,
+                    "position": 3324,
+                    "score": 61439
+                },
+                {
+                    "id": 1,
+                    "position": 1638,
+                    "score": 49303
+                },
+                {
+                    "id": 2,
+                    "position": 1627,
+                    "score": 71976
+                },
+                {
+                    "id": 3,
+                    "position": 1059,
+                    "score": 139649
+                },
+                {
+                    "id": 4,
+                    "position": 2232,
+                    "score": 122986
+                },
+                {
+                    "id": 5,
+                    "position": 1364,
+                    "score": 66167
+                },
+                {
+                    "id": 6,
+                    "position": 2299,
+                    "score": 69187
+                }
+            ]
+        },
+        {
+            "pseudo": "Freakyguy",
+            "rankings": [
+                {
+                    "id": 0,
+                    "position": 5124,
+                    "score": 64929
+                },
+                {
+                    "id": 1,
+                    "position": 3040,
+                    "score": 53683
+                },
+                {
+                    "id": 2,
+                    "position": 2897,
+                    "score": 75315
+                },
+                {
+                    "id": 3,
+                    "position": 2139,
+                    "score": 168288
+                },
+                {
+                    "id": 4,
+                    "position": 2874,
+                    "score": 128676
+                },
+                {
+                    "id": 5,
+                    "position": 2633,
+                    "score": 71218
+                },
+                {
+                    "id": 6,
+                    "position": 1682,
+                    "score": 65156
+                }
+            ]
+        }
+    ]
+}
