@@ -34,11 +34,10 @@ def RunLeaderboardScrape():
 
 if __name__ == "__main__":
     start = time.perf_counter()
-    print("Running Trackmania2020 Leaderboard Update Service")
+    print("Running Zrt Trackmania Cup 2022 Leaderboard Tracker")
     print("Time (UTC): " + datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S"))
 
-    print("Running Process")
-    RunLeaderboardScrape()
+
 
     stop = time.perf_counter()
     print(f"Finished in {stop - start:0.4f} seconds")
