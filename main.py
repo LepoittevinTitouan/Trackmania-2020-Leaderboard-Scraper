@@ -22,6 +22,7 @@ def main():
 
     # main loop
     while True:
+        # For each authentified player recorded in the players.json file
         for authPlayer in settings.players:
             player = next((item for item in players["players"] if item["pseudo"] == authPlayer["pseudo"]), None)
             if player is None:
@@ -40,6 +41,9 @@ def main():
 
                 with settings.lockTocken:
                     response = leaderboard.CallLeaderboardApi(authPlayer['accessToken'], url)
+
+                if not response:
+                    continue
 
                 # Chercher si la map est enregistrée chez le joueur
                 if track['id'] in [mapID for mapID in [i['id'] for i in player['rankings']]]:

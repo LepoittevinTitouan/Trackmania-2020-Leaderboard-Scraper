@@ -14,5 +14,9 @@ def CallLeaderboardApi(auth, url):
         'user-agent': 'zrtLeaderboardScrapper'
     }
     result = requests.get(url, headers=headers)
+
+    print(result.json())
+    print()
+
     return result.json()
 
